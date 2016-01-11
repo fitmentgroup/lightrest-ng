@@ -1,0 +1,20 @@
+{
+  "name": "lightrest-ng",
+  "homepage": "https://github.com/fitmentgroup/lightrest-ng",
+  "authors": [
+    "Guidi <guidotarsia@gmail.com>"
+  ],
+  "description": "Lightweight REST library/service for Angular",
+  "main": "dist/lightrest-ng.js",
+  "moduleType": [],
+  "keywords": [
+    "angular",
+    "rest",
+    "lightweight"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.5.0-beta2",
+    "angular-mocks": "~1.5.0-beta2"
+  }
+}
