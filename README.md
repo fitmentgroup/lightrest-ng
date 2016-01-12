@@ -15,8 +15,9 @@ The goals of this library are:
 - [API](#api)
 - [The right way to use it](#the-right-way-to-use-it)
 - [How to contribute](#how-to-contribute)
+- [How do I test this?](#how-do-i-test-this)
 
-# Installation and use
+## Installation and use
 
 Install with bower and reference in html (cdnjs to be added in near future)
 
@@ -59,7 +60,9 @@ Remember that $http is a promise/thenable, so to get the result you do:
     }
 ````
 
-# API
+**[Back to top](#table-of-contents)**
+
+## API
 
 `lightrest.build(config, options)`
 
@@ -67,11 +70,11 @@ Remember that $http is a promise/thenable, so to get the result you do:
 * [options](#options-object) {object, optional}: options used by lightrest to do some crazy stuff. They are listed below.
 * *returns* {function(data)}: request function. The data overwrites the data property in the config object. If the [url has parameters](#url-parameters), then they are replaced with data's corresponding properties. The result of this function is the result of the $http call.  
 
-## config object
+### config object
 
 This object is sent unmodified to the $http (with the exception of the data, which is sent later, when running the returned `function(data)`). You can read the documentation of (config properties here)[https://docs.angularjs.org/api/ng/service/$http#usage].
 
-## options object
+### options object
  
 | option                                   | values                    | default   | description  |
 |:-----------------------------------------|:--------------------------|:----------|:-----------|
@@ -80,14 +83,14 @@ This object is sent unmodified to the $http (with the exception of the data, whi
 | [array](#array-option)                   | `'concurrent' 'sequential'` | `undefined` | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
 
 
-### urlApiPrepend option
+#### urlApiPrepend option
 
 ````javascript
 lightrest.build({url: '/cars'})
 ````
 By default, the option is true, so this request is sent to '/api/cars'
 
-### dataField option
+#### dataField option
 
 ````javascript
 var data = { person: { name: 'John' } };
@@ -95,7 +98,7 @@ lightrest.build({url: '/people/1', method: 'put'}, {dataField: 'person'}, data);
 ````
 This will send the request with `{ name: 'John' }` as data instead of `{ person: { name: 'John'} }`.
 
-### array option
+#### array option
 
 ````javascript
 var data = [{name: 'Mike'}, {name: 'Jimmy'}];
@@ -104,7 +107,7 @@ lightrest.build({url: '/people', method: 'post'}, {array: 'sequential'}, data);
 Supposing that the POST method for `/people` creates a person, this sends two requests for that sequentially (one at a time). If array property was 'concurrent', the request are all sent concurrently.  
 The sequential mode doesn't stop if a request fails.
 
-## Url parameters
+### Url parameters
 
 If any part of the url is preceeded by a colon, it is parsed as a url parameter, for example:
 ````javascript
@@ -113,8 +116,9 @@ lightrest.build({url: '/cars/:id'})(car);
 ````
 will send a request to `/api/cars/1`
 
+**[Back to top](#table-of-contents)**
 
-# The right way to use it
+## The right way to use it
 
 When a website project starts, there's a usually a single developer doing the API. And even though there are standard ways to design the API's, developers sometimes design it in quirky ways. For example, instead of creating a person by sending a POST request to `/people`, he might (unnecesarily) make it `/people/create`).  
 
@@ -160,12 +164,17 @@ angular
 ````
 And so, the quirkiness and particularities are comfortably addressed and handled.
 
-# How to contribute
+
+**[Back to top](#table-of-contents)**
+
+## How to contribute
 
 Post whatever feature you would want as an issue, and if it's a good idea, I'll add it.  
 I accept pull requests as long as you add the test to the `test.spec.js` file.
 
-# How do I test this?
+**[Back to top](#table-of-contents)**
+
+## How do I test this?
 
 I used karma and gulp for this. To test it, do this:  
 
@@ -184,3 +193,5 @@ Run tests:
 ````bash
 karma start
 ````
+
+**[Back to top](#table-of-contents)**
