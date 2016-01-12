@@ -76,9 +76,9 @@ This object is sent unmodified to the $http (with the exception of the data, whi
 
 ### options object
  
-| option                                   | values                    | default   | description  |
-|:-----------------------------------------|:--------------------------|:----------|:-----------|
-| [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                   | `undefined` | If true, prepend `'/api'` to the string |
+| option                                   | values                      | default     | description  |
+|:-----------------------------------------|:----------------------------|:------------|:-----------|
+| [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                   | `true`      | If true, prepend `'/api'` to the string |
 | [dataField](#datafield-option)           | `string`                    | `undefined` | If dataField is set, only send the specified property value of data as data
 | [array](#array-option)                   | `'concurrent' 'sequential'` | `undefined` | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
 
