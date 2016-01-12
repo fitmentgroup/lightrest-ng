@@ -1,10 +1,12 @@
 {
   "name": "lightrest-ng",
+  "version": "0.1.0",
   "homepage": "https://github.com/fitmentgroup/lightrest-ng",
   "authors": [
     "Guidi <guidotarsia@gmail.com>"
   ],
   "description": "Lightweight REST library/service for Angular",
+  "ignore": [".travis.yml", ".gitignore", "gulpfile.js", "karma.conf.js", "test.spec.js"],
   "main": "dist/lightrest-ng.js",
   "moduleType": [],
   "keywords": [
