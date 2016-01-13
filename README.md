@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/fitmentgroup/lightrest-ng.svg?branch=master)](https://travis-ci.org/fitmentgroup/lightrest-ng)
 
+*Sponsored by [fitmentgroup.com](http://fitmentgroup.com)*  
 lightrest-ng is an angular REST library as an Angular service. Uses Angular's `$http` service under the hood. No black magic.  
 The goals of this library are: 
 * Be lightweight
@@ -45,14 +46,14 @@ angular
 ````
 (in case you're confused, remember that the most standard way of creating services is using angular's `factory` method)
 
-To do a simple request you it this way:
+To do a simple request you do:
 ````javascript
     var method = lightrest.build({url: '/countries/1', method: 'PUT'});
     var country = { name: 'Zimbabwe' };
     method(country); //The request is sent here
 ````
 So, the idea is that you first create and configure the request, and you get a function as a result. That function returned is the configured method.  
-Remember that $http is a promise/thenable, so to get the result you do:  
+The result of `method` is the result of `$http`, and remember that `$http` is a promise/thenable, so to get the result you do:  
 
 ````javascript
     method(country).then(function(res) {
@@ -151,7 +152,7 @@ angular
 .factory('people', ['rest', function(rest) {
     var peopleApi = rest('people');
     
-    //If for some reason, the people api has a method too specific to it to be added to our rest template, we create a custom method for people
+    //If for some reason, the people api has a method too specific to people to be added to our rest template, we create a custom method just for people
     //Notice that I added the lightrest build method to our rest service so I don't have to reference the lightrest library here.
     peopleApi.updateNationalities = rest.build({
         url: '/people/update-nationalities',
@@ -176,7 +177,7 @@ I accept pull requests as long as you add the test to the `test.spec.js` file.
 
 ## How do I test this?
 
-I used karma and gulp for this. To test it, do this:  
+I used karma and gulp for this. To test:  
 
 Clone the project:
 ````bash
