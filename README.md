@@ -73,7 +73,7 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 
 ### config object
 
-This object is sent unmodified to the $http (with the exception of the data, which is sent later, when running the returned `function(data)`). You can read the documentation of (config properties here)[https://docs.angularjs.org/api/ng/service/$http#usage].
+This object is sent unmodified to the $http (with the exception of the data, which is sent later, when running the returned `function(data)`). You can read the documentation of [config properties here](https://docs.angularjs.org/api/ng/service/$http#usage).
 
 ### options object
  
