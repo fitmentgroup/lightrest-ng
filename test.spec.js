@@ -15,16 +15,16 @@ describe('lightrest', function() {
         {Id: 5, Name: 'James'},
         {Id: 6, Name: 'Mark'},
       ];
-      var url = 'people';
+      var url = '/people';
       var idUrl = '/:Id'
       peopleApi = {
         get: lightrest.build({ url: url + idUrl }),
         getAll: lightrest.build({ url: url }),
         post: lightrest.build({ method: 'post', url: url }),
         delete: lightrest.build({ method: 'delete', url: url + idUrl }),
-        deleteMany: lightrest.build({ method: 'delete', url: url + idUrl }, { array: 'concurrent' }),
+        deleteMany: lightrest.build({ method: 'delete', url: url + idUrl }, { arrayMode: 'concurrent' }),
         put: lightrest.build({ method: 'put', url: url + idUrl }),
-        putMany: lightrest.build({ method: 'put', url: url + idUrl }, { array: 'sequential' })
+        putMany: lightrest.build({ method: 'put', url: url + idUrl }, { arrayMode: 'sequential' })
       }
 
       httpBackend = $httpBackend;
@@ -60,7 +60,7 @@ describe('lightrest', function() {
     }));
 
     afterEach(function() { httpBackend.verifyNoOutstandingRequest() });
-    
+
 
     it("should throw error if no Id was supplied", function() {
       expect(function() { peopleApi.get() })
@@ -124,13 +124,6 @@ describe('lightrest', function() {
         done();
       })
       httpBackend.flush();
-    })
-
-    it("should not allow to create a request without url", function() {
-    	expect(function() { _lightrest.build({}) })
-    	.toThrow(new Error("Tried to create a request without url"))
-    	expect(function() { _lightrest.build() })
-    	.toThrow(new Error("Tried to create a request without url"))
     })
 
     it("should prepend /api to api.request if it wasn't specified", function() {

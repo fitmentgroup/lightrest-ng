@@ -4,7 +4,7 @@
 
 *Sponsored by [fitmentgroup.com](http://fitmentgroup.com)*  
 lightrest-ng is an angular REST library as an Angular service. Uses Angular's `$http` service under the hood. No black magic.  
-The goals of this library are: 
+The goals of this library are:
 * Be lightweight
 * Easy to learn
 * Have no behind the curtain stuff, the developer should be in control of what's going on all the time.
@@ -73,15 +73,16 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 
 ### config object
 
-This object is sent unmodified to the $http (with the exception of the data, which is sent later, when running the returned `function(data)`). You can read the documentation of (config properties here)[https://docs.angularjs.org/api/ng/service/$http#usage].
+This object is sent untouched (with some exceptions) to the $http. The exceptions are the `data`, `params`and `url` properties, which are somtimes modified depending on the options picked in the `options` object. You can read the documentation of (config properties here)[https://docs.angularjs.org/api/ng/service/$http#usage].
 
 ### options object
- 
-| option                                   | values                      | default     | description  |
-|:-----------------------------------------|:----------------------------|:------------|:-----------|
-| [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                   | `true`      | If true, prepend `'/api'` to the string |
-| [dataField](#datafield-option)           | `string`                    | `undefined` | If dataField is set, only send the specified property value of data as data
-| [array](#array-option)                   | `'concurrent' 'sequential'` | `undefined` | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
+
+| option                                   | possibles values                    | default     | description  |
+|:-----------------------------------------|:------------------------------------|:------------|:-----------|
+| [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                           | `true`      | If true, prepend `'/api'` to the string |
+| [dataField](#datafield-option)           | `string`                            | `false`     | If dataField is set, only send the specified property value of data as data
+| [dataMode](#datamode-option)             | `false` `'data'` `'params'`         | `'data'`    | data mode defines (if not false) which property of `$http`'s `config` will be used to send data.
+| [arrayMode](#arraymode-option)           | `false` `'concurrent' 'sequential'` | `false`     | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
 
 
 #### urlApiPrepend option
@@ -99,13 +100,36 @@ lightrest.build({url: '/people/1', method: 'put'}, {dataField: 'person'}, data);
 ````
 This will send the request with `{ name: 'John' }` as data instead of `{ person: { name: 'John'} }`.
 
-#### array option
+#### dataMode option
+
+defines what property from `$http`'s `config` will be used to send the data. The `data` property sends the data as body request,
+while the `param` property sends it as **query string**
+````javascript
+var data = {name: 'Mike'};
+lightrest.build({url: '/people/1', method: 'put'}, {dataMode: 'params'}, data);
+````
+... will do a request to `/api/people/1?name=Mike`, while this:
+````javascript
+var data = {name: 'Mike'};
+lightrest.build({url: '/people/1', method: 'put'}, {dataMode: 'params'}, data);
+````
+will do a request do `/api/people/1` with `{name: 'Mike'}` as body of the request.
+
+Keep in mind that doing this:
+````javascript
+var data = {name: 'Mike'};
+lightrest.build({url: '/people/1'}, {dataMode: 'data'});
+````
+will result in an exception since you can't send data in the body of a `get` request
+
+#### arrayMode option
 
 ````javascript
 var data = [{name: 'Mike'}, {name: 'Jimmy'}];
-lightrest.build({url: '/people', method: 'post'}, {array: 'sequential'}, data);
+lightrest.build({url: '/people', method: 'post'}, {arrayMode: 'sequential'}, data);
 ````
 Supposing that the POST method for `/people` creates a person, this sends two requests for that sequentially (one at a time). If array property was 'concurrent', the request are all sent concurrently.  
+The result of a lightrest request on `arrayMode` is the result of angular's `$q.all` with an array of all the `$http` requests done as argument.
 The sequential mode doesn't stop if a request fails.
 
 ### Url parameters
@@ -131,6 +155,7 @@ angular
 .module('<your-module>')
 .factory('rest', ['lightrest', function(lightrest) {
     function template(noun) {
+        if (noun[0] != '/') noun = '/' + noun;
         return {
             get: lightrest.build({ url: noun }),
             create: lightrest.build({ url: noun + '/create', method: 'POST'}),
@@ -151,7 +176,7 @@ angular
 .module('<your-module>')
 .factory('people', ['rest', function(rest) {
     var peopleApi = rest('people');
-    
+
     //If for some reason, the people api has a method too specific to people to be added to our rest template, we create a custom method just for people
     //Notice that I added the lightrest build method to our rest service so I don't have to reference the lightrest library here.
     peopleApi.updateNationalities = rest.build({
@@ -159,7 +184,7 @@ angular
         method: 'PUT'
     }, {} /* Whatever options you want to use */
     );
-    
+
     return peopleApi;
 }]);
 ````

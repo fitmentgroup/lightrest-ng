@@ -27,23 +27,15 @@
 			"file": "dist/lightrest-ng.js",
 			"settings":
 			{
-				"buffer_size": 4010,
+				"buffer_size": 4124,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "bower.json",
+			"file": "test.spec.js",
 			"settings":
 			{
-				"buffer_size": 557,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".travis.yml",
-			"settings":
-			{
-				"buffer_size": 104,
+				"buffer_size": 4890,
 				"line_ending": "Windows"
 			}
 		}
@@ -85,17 +77,19 @@
 	},
 	"file_history":
 	[
+		"/G/git/lightrest-ng/test.spec.js",
+		"/G/git/lightrest-ng/.travis.yml",
+		"/G/git/viper/src/viper/test/test.spec.js",
+		"/G/git/lightrest-ng/bower.json",
+		"/G/git/viper/src/viper/test/core-directives/api.spec.js",
+		"/G/git/viper/src/viper/karma.conf.js",
 		"/G/git/lightrest-ng/package.json",
 		"/G/git/viper/src/viper/wwwroot/lib/angular/package.json",
 		"/G/git/viper/.gitlab-ci.yml",
 		"/G/git/lightrest-ng/.gitignore",
 		"/G/git/lightrest-ng/dist/lightrest-ng.js",
-		"/G/git/lightrest-ng/test.spec.js",
 		"/G/git/lightrest-ng/karma.conf.js",
-		"/G/git/lightrest-ng/bower.json",
 		"/G/git/lightrest-ng/dist/lightrest-ng.min.js",
-		"/G/git/viper/src/viper/test/core-directives/api.spec.js",
-		"/G/git/viper/src/viper/karma.conf.js",
 		"/G/git/viper/src/viper/package.json",
 		"/G/git/lightrest-ng/gulpfile.js",
 		"/G/git/lightrest-ng/test.js",
@@ -210,9 +204,7 @@
 		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/config.json",
 		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/web.config",
 		"/G/git/viper/src/viper/viper.xproj",
-		"/G/git/mantis-time/views/index.jade",
-		"/G/git/mantis-time/public/mantis-app/js/services.js",
-		"/G/git/mantis-time/public/mantis-app/js/directives.js"
+		"/G/git/mantis-time/views/index.jade"
 	],
 	"find":
 	{
@@ -318,7 +310,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -327,15 +319,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4010,
+						"buffer_size": 4124,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								791,
-								804
+								742,
+								742
 							]
 						],
 						"settings":
@@ -343,68 +335,40 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 228.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "bower.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 557,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								49,
-								49
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 114.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": ".travis.yml",
+					"buffer": 1,
+					"file": "test.spec.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 104,
+						"buffer_size": 4890,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								104,
-								104
+								4582,
+								4582
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/YAML/YAML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 513.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
