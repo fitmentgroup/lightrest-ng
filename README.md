@@ -69,11 +69,14 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 
 * [config](#config-object) {object}: config object that is passed to angular's $http function.
 * [options](#options-object) {object, optional}: options used by lightrest to do some crazy stuff. They are listed below.
-* *returns* {function(data)}: request function. The data overwrites the data property in the config object. If the [url has parameters](#url-parameters), then they are replaced with data's corresponding properties. The result of this function is the result of the $http call.  
+* [*return* function](#return-function) {function(data)}: request function. The data overwrites the data property in the config object. If the [url has parameters](#url-parameters), then they are replaced with data's corresponding properties. The result of this function is the result of the $http call.  
 
 ### config object
 
-This object is sent untouched (with some exceptions) to the $http. The exceptions are the `data`, `params`and `url` properties, which are somtimes modified depending on the options picked in the `options` object. You can read the documentation of (config properties here)[https://docs.angularjs.org/api/ng/service/$http#usage].
+This object is sent untouched (with some exceptions) to the $http.
+The exceptions are the `data`, `params`and `url` properties, which are sometimes
+modified depending on the options picked in the `options` object.
+You can read the documentation of [config properties here](https://docs.angularjs.org/api/ng/service/$http#usage).
 
 ### options object
 
@@ -131,6 +134,14 @@ lightrest.build({url: '/people', method: 'post'}, {arrayMode: 'sequential'}, dat
 Supposing that the POST method for `/people` creates a person, this sends two requests for that sequentially (one at a time). If array property was 'concurrent', the request are all sent concurrently.  
 The result of a lightrest request on `arrayMode` is the result of angular's `$q.all` with an array of all the `$http` requests done as argument.
 The sequential mode doesn't stop if a request fails.
+
+### *return* function (`function(data)`)
+
+This is the actual function that you call to trigger the request. You send the data in the `data` parameter (duh).
+````javascript
+var fn = lightrest.build(...);
+fn({ name: 'Mike' })
+````
 
 ### Url parameters
 
