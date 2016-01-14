@@ -78,24 +78,9 @@
                 }
             }
         }
-        var api = {
+        var rest = {
             build: build,
-            create: function (type) {
-                if (type[0] != '/')
-                    type = '/' + type;
-                var url = type;
-                var idUrl = '/:Id';
-                return {
-                    get: build({ url: url + idUrl }),
-                    getAll: build({ url: url }),
-                    post: build({ method: 'post', url: url }),
-                    delete: build({ method: 'delete', url: url + idUrl }),
-                    deleteMany: build({ method: 'delete', url: url + idUrl }, { array: 'concurrent' }),
-                    put: build({ method: 'put', url: url + idUrl }),
-                    putMany: build({ method: 'put', url: url + idUrl }, { array: 'concurrent' })
-                }
-            }
         }
-        return api;
+        return rest;
     }])
 })();

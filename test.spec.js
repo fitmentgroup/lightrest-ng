@@ -15,7 +15,18 @@ describe('lightrest', function() {
         {Id: 5, Name: 'James'},
         {Id: 6, Name: 'Mark'},
       ];
-      peopleApi = lightrest.create('people');
+      var url = 'people';
+      var idUrl = '/:Id'
+      peopleApi = {
+        get: lightrest.build({ url: url + idUrl }),
+        getAll: lightrest.build({ url: url }),
+        post: lightrest.build({ method: 'post', url: url }),
+        delete: lightrest.build({ method: 'delete', url: url + idUrl }),
+        deleteMany: lightrest.build({ method: 'delete', url: url + idUrl }, { array: 'concurrent' }),
+        put: lightrest.build({ method: 'put', url: url + idUrl }),
+        putMany: lightrest.build({ method: 'put', url: url + idUrl }, { array: 'sequential' })
+      }
+
       httpBackend = $httpBackend;
       $httpBackend.when("GET", "/api/people").respond(people);
       $httpBackend.whenRoute("GET", "/api/people/:id")
