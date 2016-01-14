@@ -1,3 +1,5 @@
+/* lightrest-ng 0.2.1 */
+
 ﻿(function () {
     'use strict';
 
