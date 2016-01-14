@@ -1,0 +1,495 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"put",
+				"putMany"
+			],
+			[
+				"tak",
+				"taskAjax"
+			],
+			[
+				"recrd",
+				"recordsLength"
+			],
+			[
+				"number",
+				"numberOfLastDay"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "dist/lightrest-ng.js",
+			"settings":
+			{
+				"buffer_size": 4010,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "bower.json",
+			"settings":
+			{
+				"buffer_size": 557,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".travis.yml",
+			"settings":
+			{
+				"buffer_size": 104,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 174.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/G/git/lightrest-ng/package.json",
+		"/G/git/viper/src/viper/wwwroot/lib/angular/package.json",
+		"/G/git/viper/.gitlab-ci.yml",
+		"/G/git/lightrest-ng/.gitignore",
+		"/G/git/lightrest-ng/dist/lightrest-ng.js",
+		"/G/git/lightrest-ng/test.spec.js",
+		"/G/git/lightrest-ng/karma.conf.js",
+		"/G/git/lightrest-ng/bower.json",
+		"/G/git/lightrest-ng/dist/lightrest-ng.min.js",
+		"/G/git/viper/src/viper/test/core-directives/api.spec.js",
+		"/G/git/viper/src/viper/karma.conf.js",
+		"/G/git/viper/src/viper/package.json",
+		"/G/git/lightrest-ng/gulpfile.js",
+		"/G/git/lightrest-ng/test.js",
+		"/G/git/lakyu/model/fake.js",
+		"/G/git/lakyu/angular/directives/common-likes-btn.directive.js",
+		"/G/git/lakyu/views/channel.jade",
+		"/G/git/lakyu/views/templates/reco.jade",
+		"/G/git/lakyu/views/templates/common-likes-btn.jade",
+		"/G/git/lakyu/.gitignore",
+		"/G/git/lakyu/views/templates/channel-list.jade",
+		"/G/git/lakyu/views/templates/my-channel-list.jade",
+		"/G/git/lakyu/views/channels.jade",
+		"/G/git/lakyu/model/channel.js",
+		"/G/git/lakyu/routes/routes.js",
+		"/G/git/lakyu/routes/api.js",
+		"/G/git/lakyu/index.js",
+		"/G/git/lakyu/angular/app.js",
+		"/G/git/lakyu/public/stylesheets/index.css",
+		"/G/git/lakyu/views/index.jade",
+		"/G/git/lakyu/views/templates/modals/common-likes.jade",
+		"/G/git/lakyu/gulpfile.js",
+		"/G/git/lakyu/angular/services/users.service.js",
+		"/G/git/lakyu/angular/services/recos.service.js",
+		"/G/git/lakyu/angular/directives/reco.directive.js",
+		"/G/git/lakyu/angular/directives/recos.directive.js",
+		"/G/git/lakyu/angular/directives/recos.service.js",
+		"/G/git/lakyu/package.json",
+		"/G/git/viper/src/viper/wwwroot/lib/checklist-model/checklist-model.js",
+		"/G/git/lakyu/views/_layout.jade",
+		"/G/git/lakyu/views/_pre-head.jade",
+		"/G/git/lakyu/views/_header.jade",
+		"/G/git/viper/src/viper/wwwroot/static-libs/countUp.js/dist/angular-countUp.min.js",
+		"/G/git/viper/.gitignore",
+		"/G/git/viper/src/viper/gulpfile.js",
+		"/G/git/viper/src/viper/wwwroot/static-libs/countUp.js/dist/angular-countUp.js",
+		"/G/git/viper/src/viper/wwwroot/lib/jquery/jquery.js",
+		"/G/git/viper/src/viper/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+		"/G/git/viper/src/viper/wwwroot/lib/angular/angular.js",
+		"/G/git/viper/src/viper/bower.json",
+		"/G/git/viper/src/viper/wwwroot/lib/countUp.js/dist/angular-countUp.js",
+		"/G/git/viper/src/viper/wwwroot/lib/hammer.js/hammer.js",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-2/wp-config.php",
+		"/G/git/knowmap-web/index.html",
+		"/G/git/viper/src/viper/wwwroot/lib/angular-bootstrap/.bower.json",
+		"/G/git/viper/src/viper/project.json",
+		"/G/git/knowmap-web/temp/wp-content/plugins/sola-newsletters/sola-newsletters.php",
+		"/C/Users/Guido/AppData/Local/Temp/Rar$DIa0.335/functions.php",
+		"/C/Users/Guido/AppData/Local/Temp/Rar$DIa0.751/functions.php",
+		"/C/Users/Guido/AppData/Local/Temp/Rar$DIa0.861/functions.php",
+		"/G/git/viper/src/viper/Startup.cs",
+		"/G/git/MusicStore/src/MusicStore/Startup.cs",
+		"/G/git/configs/.bash_profile",
+		"/G/git/viper/src/viper/env.json",
+		"/G/git/knowmap-web/wp-admin/includes/file.php",
+		"/G/git/knowmap-web/wp-content/uploads/2015/05/dir28.php",
+		"/G/git/knowmap-web/wp-content/uploads/2015/05/dir67.php",
+		"/G/git/knowmap-web/wp-content/uploads/2015/09/functions57.php",
+		"/G/git/knowmap-web/wp-content/uploads/2015/11/model.php",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/general.php",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/sql.php",
+		"/G/git/knowmap-web/wp-content/uploads/sola/list.php",
+		"/G/git/knowmap-web/wp-content/uploads/revslider/home-slider/test.php",
+		"/G/git/knowmap-web/wp-content/uploads/js_composer/js_composer_front_custom.css",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/inc.php",
+		"/G/git/knowmap-web/wp-content/plugins/akismet/.htaccess",
+		"/G/git/knowmap-web/wp-config.php",
+		"/C/Users/Guido/AppData/Local/Temp/Rar$DIa0.741/functions.php",
+		"/G/git/knowmap-web/wp-includes/functions.php",
+		"/G/git/knowmap-web/formulario/error.html",
+		"/G/git/knowmap-web/wp-content/uploads/js_composer/custom.css",
+		"/G/git/knowmap-web/wp-content/uploads/revslider/home-slider/start.php",
+		"/G/git/viper/src/viper/config - Copy.json",
+		"/G/git/ViperApi/Viper.Api/packages.config",
+		"/G/git/ViperApi/Viper.sln",
+		"/G/git/viper/README.md",
+		"/C/Program Files/LinkShellExtension/Doc/linkshellextension.html",
+		"/C/Users/Guido/.bash_profile",
+		"/G/git/configs/tmp/git-completion.bash",
+		"/G/git/configs/git-completion.bash",
+		"/G/git/viper/global.json",
+		"/C/Users/Guido/Desktop/git-completion.bash",
+		"/C/Program Files (x86)/Git/etc/git-completion.bash",
+		"/G/cmder/config/aliases",
+		"/G/git/superclonebox/public/js/bg.js",
+		"/G/git/superclonebox/public/js/platforms.js",
+		"/G/git/superclonebox/public/js/game.js",
+		"/G/git/superclonebox/public/js/player.js",
+		"/G/git/viper/NuGet.Config",
+		"/G/git/superclonebox/public/js/assets.js",
+		"/G/git/superclonebox/public/index.html",
+		"/G/git/superclonebox/public/js/platform.js",
+		"/G/git/superclonebox/public/js/background.js",
+		"/G/git/viper/src/viper/app/core-directives/edit-button.js",
+		"/G/git/viper/src/viper/wwwroot/css/login.css",
+		"/G/git/viper/src/viper/app/core-directives/delete-button.js",
+		"/G/git/viper/src/viper/app/clients/clients.controller.js",
+		"/G/git/viper/src/viper/app/applications/apps.controller.js",
+		"/G/publish/wwwroot/web.config",
+		"/G/publish/approot/src/viper/project.json",
+		"/C/Users/Guido/AppData/Roaming/NuGet/NuGet.Config",
+		"/G/git/demand-web-application/Deployer/index.js",
+		"/C/Users/Guido/Desktop/hosts",
+		"/G/git/viper/src/viper/app/core-services/application.js",
+		"/G/git/viper/src/viper/wwwroot/modals/delete.html",
+		"/G/git/viper/src/viper/Views/Dashboard/Applications.cshtml",
+		"/G/temp/7/New Text Document.py",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/global.json",
+		"/G/git/viper/src/viper/Views/Shared/_HeadPartial.cshtml",
+		"/G/git/viper/src/viper/Views/Shared/_BodyScriptsPartial.cshtml",
+		"/G/git/viper/src/viper/Views/Shared/_ValidationScriptsPartial.cshtml",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/project.json",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/config.json",
+		"/C/Users/Guido/AppData/Local/Temp/fz3temp-1/web.config",
+		"/G/git/viper/src/viper/viper.xproj",
+		"/G/git/mantis-time/views/index.jade",
+		"/G/git/mantis-time/public/mantis-app/js/services.js",
+		"/G/git/mantis-time/public/mantis-app/js/directives.js"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"G:\\git\\mantis-time,-node-modules/*,-*min*",
+			"G:\\git\\mantis-time,-/node-modules/*,-*min*",
+			"G:\\git\\mantis-time",
+			"G:\\git\\mantis-time\\public\\layouts",
+			"G:\\git\\mantis-time"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"api",
+			"4",
+			"viper",
+			"_api",
+			"    - ",
+			"\\",
+			"$*",
+			"__git_complete ",
+			"_git_checkout",
+			"sprite",
+			"player.",
+			"horizontalMoveSpeed",
+			"facingRIght",
+			"platformLayer",
+			"platforms",
+			"group",
+			"platformLayer",
+			"platforms",
+			"backgroundLayer",
+			"irongirder",
+			"clouds",
+			"backgroundLayer",
+			"clouds",
+			"backgroundLayer",
+			"createGameLayers",
+			"Phaser",
+			"player",
+			"application",
+			"80",
+			"9318",
+			"showProductsBottomTabs",
+			"selectize",
+			"load",
+			"set",
+			"$",
+			"downloadCalendar",
+			"account",
+			"account/",
+			"url",
+			"defaultReturnUrl",
+			"defaultUrl",
+			"defaultRe",
+			"http500",
+			"500",
+			".min",
+			"500",
+			"admin",
+			"admin.jade",
+			"build",
+			"data",
+			"csrf",
+			"core.less",
+			"bootstrap-build",
+			"commmon.js",
+			"watch",
+			"clientJS",
+			"widow",
+			"phantom.create"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"peopleApi",
+			"",
+			"\\\\",
+			"$@",
+			"player.sprite",
+			"isFacingRight",
+			"platforms.layer",
+			"platforms.Layer"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "dist/lightrest-ng.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4010,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								791,
+								804
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 228.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bower.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 557,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								49,
+								49
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": ".travis.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 104,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								104,
+								104
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "bower.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 196.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

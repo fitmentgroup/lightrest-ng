@@ -40,7 +40,7 @@
                     return r;
                 });
                 if (options.dataField) config.data = config.data[options.dataField];
-                if (!config.method || config.method.toLower() == 'get') config.params = config.data;
+                if (!config.method || config.method.toLowerCase() == 'get') config.params = config.data;
                 return {
                     run: function () { return $http(config); }
                 }

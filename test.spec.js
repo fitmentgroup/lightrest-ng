@@ -63,7 +63,7 @@ describe('lightrest', function() {
     it("should single get correctly", function(done) {
       peopleApi.get({Id: 4})
       .then(function(res) {
-        expect(res.data).toEqual()
+        expect(res.data).toEqual(people[4])
         done();
       })
       httpBackend.flush();
