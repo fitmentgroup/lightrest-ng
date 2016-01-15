@@ -83,8 +83,8 @@ You can read the documentation of [config properties here](https://docs.angularj
 | option                                   | possibles values                    | default     | description  |
 |:-----------------------------------------|:------------------------------------|:------------|:-----------|
 | [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                           | `true`      | If true, prepend `'/api'` to the string |
-| [dataField](#datafield-option)           | `string`                            | `false`     | If dataField is set, only send the specified property value of data as data
-| [dataMode](#datamode-option)             | `false` `'data'` `'params'`         | `'data'`    | data mode defines (if not false) which property of `$http`'s `config` will be used to send data.
+| [dataField](#datafield-option)           | `false` `string`                    | `false`     | If dataField is set, only send the specified property value of data as data
+| [dataMode](#datamode-option)             | `false` `'data'` `'params'`         | If method is 'get', then `'params'` else `'data'` | data mode defines (if not false) which property of `$http`'s `config` will be used to send data.
 | [arrayMode](#arraymode-option)           | `false` `'concurrent' 'sequential'` | `false`     | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
 
 
@@ -131,13 +131,13 @@ will result in an exception since you can't send data in the body of a `get` req
 var data = [{name: 'Mike'}, {name: 'Jimmy'}];
 lightrest.build({url: '/people', method: 'post'}, {arrayMode: 'sequential'}, data);
 ````
-Supposing that the POST method for `/people` creates a person, this sends two requests for that sequentially (one at a time). If array property was 'concurrent', the request are all sent concurrently.  
+Supposing that the POST method for `/people` creates a person, this sends two requests for that sequentially (one at a time). If arrayMode property was 'concurrent', the request are all sent concurrently.  
 The result of a lightrest request on `arrayMode` is the result of angular's `$q.all` with an array of all the `$http` requests done as argument.
 The sequential mode doesn't stop if a request fails.
 
-### *return* function (`function(data)`)
+### *return* function
 
-This is the actual function that you call to trigger the request. You send the data in the `data` parameter (duh).
+This is the actual function (`function(data)`) that you call to trigger the request. You send the data in the `data` parameter (duh).
 ````javascript
 var fn = lightrest.build(...);
 fn({ name: 'Mike' })
