@@ -18,7 +18,7 @@ describe('lightrest', function() {
       var url = '/people';
       var idUrl = '/:Id'
       peopleApi = {
-        get: lightrest.build({ url: url + idUrl }),
+        get: lightrest.build({ url: url + idUrl }, {dataMode: 'params'}),
         getAll: lightrest.build({ url: url }),
         post: lightrest.build({ method: 'post', url: url }),
         delete: lightrest.build({ method: 'delete', url: url + idUrl }),

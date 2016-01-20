@@ -84,7 +84,7 @@ You can read the documentation of [config properties here](https://docs.angularj
 |:-----------------------------------------|:------------------------------------|:------------|:-----------|
 | [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                           | `true`      | If true, prepend `'/api'` to the string |
 | [dataField](#datafield-option)           | `false` `string`                    | `false`     | If dataField is set, only send the specified property value of data as data
-| [dataMode](#datamode-option)             | `false` `'data'` `'params'`         | If method is 'get', then `'params'` else `'data'` | data mode defines (if not false) which property of `$http`'s `config` will be used to send data.
+| [dataMode](#datamode-option)             | `false` `'data'` `'params'`         | If method is 'get' => `false` else `'data'` | data mode defines (if not false) which property of `$http`'s `config` will be used to send data.
 | [arrayMode](#arraymode-option)           | `false` `'concurrent' 'sequential'` | `false`     | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
 
 

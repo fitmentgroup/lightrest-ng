@@ -1,4 +1,4 @@
-/* lightrest-ng 0.2.1 */
+/* lightrest-ng 0.2.2 */
 
 ﻿(function () {
     'use strict';
@@ -26,10 +26,10 @@
 
     		if (options.dataMode === undefined) {
     			if (!config.method || config.method.toLowerCase() == 'get') {
-    				options.dataMode = 'params';
+                    options.dataMode = false
     			}
     			else {
-    				options.dataMode = 'data'
+                    options.dataMode = 'data';
     			}
     		}
     		else if (options.dataMode === 'data') ;
