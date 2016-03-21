@@ -18,7 +18,8 @@
     "karma": "^0.13.19",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.3",
-    "phantomjs": "^1.9.19"
+    "phantomjs": "^1.9.19",
+    "phantomjs-polyfill": "0.0.2"
   },
   "scripts": {
     "test": "karma start --single-run"
