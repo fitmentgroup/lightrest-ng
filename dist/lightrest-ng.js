@@ -1,4 +1,4 @@
-/* lightrest-ng 0.2.2 */
+/* lightrest-ng 0.2.3 */
 
 ﻿(function () {
     'use strict';
