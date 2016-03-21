@@ -23,19 +23,6 @@
             else if (options.arrayMode == 'concurrent') ;
             else if (options.arrayMode == 'sequential') ;
             else throw new Error('array option should be one of these: concurrent sequential');
-
-    		if (options.dataMode === undefined) {
-    			if (!config.method || config.method.toLowerCase() == 'get') {
-                    options.dataMode = false
-    			}
-    			else {
-                    options.dataMode = 'data';
-    			}
-    		}
-    		else if (options.dataMode === 'data') ;
-    		else if (options.dataMode === 'params') ;
-    		else if (options.dataMode === false) ;
-    		else throw new Error('dataMode option can only be one of these: undefined \'data\' \'params\'')
         }
 
         function build(config, options) {
@@ -51,27 +38,25 @@
             }
 
             function ajax(data) {
+                if (!data) data = {};
                 var _config = clone(config);
+                var urlParams = data.urlParams;
                 _config.url = _config.url.replace(/:(\w+)/g, function (a, urlParam) {
                     /* data[urlParam] can be either non empty string or number */
                     var err = new Error('Url parameter ' + urlParam + ' was not included in the data');
-                    if (!data) throw err;
-                    var val = data[urlParam];
+                    if (!urlParams) throw err;
+                    var val = urlParams[urlParam];
                     if (val == null) throw err;
                     val = val.toString();
                     if (!val) throw err;
                     return val;
                 });
-                if (options.dataField) data = data[options.dataField];
-                if (options.dataMode == 'data') {
-                	_config.data = data;
+                if ((!config.method || config.method.toLowerCase() == 'get' ) 
+                    && data.body !== undefined) {
+                    throw new Error('Can\'t send data in body for get requests');
                 }
-        		else if (options.dataMode == 'params') {
-        			_config.params = data;
-        		}
-    			else if (options.dataMode === false)  {
-    				//Don't send data
-    			}
+                _config.data = data.body;
+                _config.query = data.query;
                 return {
                     run: function () { return $http(_config); }
                 }
