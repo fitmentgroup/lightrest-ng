@@ -50,7 +50,7 @@ To do a simple request you do:
 ````javascript
     var method = lightrest.build({url: '/countries/1', method: 'PUT'});
     var country = { name: 'Zimbabwe' };
-    method(country); //The request is sent here
+    method({ body: country}); //The request is sent here
 ````
 So, the idea is that you first create and configure the request, and you get a function as a result. That function returned is the configured method.  
 The result of `method` is the result of `$http`, and remember that `$http` is a promise/thenable, so to get the result you do:  
@@ -65,92 +65,96 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 
 ## API
 
-`lightrest.build(config, options)`
+`lightrest.build(config, options)(data)`
 
-* [config](#config-object) {object}: config object that is passed to angular's $http function.
-* [options](#options-object) {object, optional}: options used by lightrest to do some crazy stuff. They are listed below.
-* [*return* function](#return-function) {function(data)}: request function. The data overwrites the data property in the config object. If the [url has parameters](#url-parameters), then they are replaced with data's corresponding properties. The result of this function is the result of the $http call.  
+* [config](#config), config object that is passed to angular's $http function.
+* [options](#options), options used by lightrest to do some custom work on the requests. They are listed below.
+  * [urlApiPrepend](#urlapiprepend)
+  * [arrayMode](#arrayMode)
+* [data](#data), data sent with the actual request.
+  * [query](#query)
+  * [body](#body)
+  * [urlParams](#urlParams)
 
-### config object
+### config 
+[`object`]
 
 This object is sent untouched (with some exceptions) to the $http.
 The exceptions are the `data`, `params`and `url` properties, which are sometimes
-modified depending on the options picked in the `options` object.
-You can read the documentation of [config properties here](https://docs.angularjs.org/api/ng/service/$http#usage).
+modified depending on the properties set in the `options` and `data`objects.
+You can read the official documentation of [config properties here](https://docs.angularjs.org/api/ng/service/$http#usage).
 
-### options object
+### options 
+[`object`]
 
-| option                                   | possibles values                    | default     | description  |
-|:-----------------------------------------|:------------------------------------|:------------|:-----------|
-| [urlApiPrepend](#urlapiprepend-option)   | `Boolean`                           | `true`      | If true, prepend `'/api'` to the string |
-| [dataField](#datafield-option)           | `false` `string`                    | `false`     | If dataField is set, only send the specified property value of data as data
-| [dataMode](#datamode-option)             | `false` `'data'` `'params'`         | If method is 'get' => `false` else `'data'` | data mode defines (if not false) which property of `$http`'s `config` will be used to send data.
-| [arrayMode](#arraymode-option)           | `false` `'concurrent' 'sequential'` | `false`     | array mode lets you receive an array from data, and send the request once with each element of the original data array as data. 'concurrent' sends all of the requests at once, 'sequential' sends them sequentially.
+This object is used to do some custom stuff on the requests. The properties considered on this object are these:
 
+1. [urlApiPrepend](#urlapiprepend)
+2. [arrayMode](#arraymode)
 
-#### urlApiPrepend option
+#### urlApiPrepend 
+[`Boolean`]  defaults `true`
 
+When urlApiPrepend is true, it prepends `'/api'` to the url string.
 ````javascript
 lightrest.build({url: '/cars'})
 ````
-By default, the option is true, so this request is sent to '/api/cars'
+By default, the option is true, so this request is sent to `/api/cars`
 
-#### dataField option
+#### arrayMode 
+[`false` `'concurrent'` `'sequential'`] defaults `false`
 
+While arrayMode `false` desactivates this, `'concurrent'` and `'sequential'` does two things:
+
+1. Instead of an array of `data`, it expects an array of it.
+2. Runs the requests separately for each element in that array.
+
+For example:
 ````javascript
-var data = { person: { name: 'John' } };
-lightrest.build({url: '/people/1', method: 'put'}, {dataField: 'person'}, data);
-````
-This will send the request with `{ name: 'John' }` as data instead of `{ person: { name: 'John'} }`.
-
-#### dataMode option
-
-defines what property from `$http`'s `config` will be used to send the data. The `data` property sends the data as body request,
-while the `param` property sends it as **query string**
-````javascript
-var data = {name: 'Mike'};
-lightrest.build({url: '/people/1', method: 'put'}, {dataMode: 'params'}, data);
-````
-... will do a request to `/api/people/1?name=Mike`, while this:
-````javascript
-var data = {name: 'Mike'};
-lightrest.build({url: '/people/1', method: 'put'}, {dataMode: 'params'}, data);
-````
-will do a request do `/api/people/1` with `{name: 'Mike'}` as body of the request.
-
-Keep in mind that doing this:
-````javascript
-var data = {name: 'Mike'};
-lightrest.build({url: '/people/1'}, {dataMode: 'data'});
-````
-will result in an exception since you can't send data in the body of a `get` request
-
-#### arrayMode option
-
-````javascript
-var data = [{name: 'Mike'}, {name: 'Jimmy'}];
+var data = [{ body: {name: 'Mike'}}, { body: {name: 'Jimmy'}}];
 lightrest.build({url: '/people', method: 'post'}, {arrayMode: 'sequential'}, data);
 ````
 Supposing that the POST method for `/people` creates a person, this sends two requests for that sequentially (one at a time). If arrayMode property was 'concurrent', the request are all sent concurrently.  
 The result of a lightrest request on `arrayMode` is the result of angular's `$q.all` with an array of all the `$http` requests done as argument.
 The sequential mode doesn't stop if a request fails.
 
-### *return* function
+### data 
+[```object```]
 
-This is the actual function (`function(data)`) that you call to trigger the request. You send the data in the `data` parameter (duh).
+This is the object used to send data for the actual request. Three properties are taken from this object to specify how will the data be sent: 
+
+1. [query](#query)
+2. [body](#body)
+3. [urlParams](#urlparams)
+
+
+#### query 
+[```object```]
+
+This property is the value used for the `config.query`. It sets the **query string** of the URL.
 ````javascript
 var fn = lightrest.build(...);
-fn({ name: 'Mike' })
+fn({ queryString: { name: 'Mike' }})
 ````
 
-### Url parameters
+#### body 
+[```object```]
 
-If any part of the url is preceeded by a colon, it is parsed as a url parameter, for example:
+This property is the value used for the `config.data`. It sets the **body** of the request
 ````javascript
-var car = { id: 1 };
-lightrest.build({url: '/cars/:id'})(car);
+var fn = lightrest.build(...);
+fn({ body: { name: 'Mike' }})
 ````
-will send a request to `/api/cars/1`
+
+#### urlParams 
+[```object```]
+
+This object is not actually used to send data, but just the case when any part of the `url` maps to a parameter by using the `:` before words.
+
+````javascript
+lightrest.build({url: '/cars/:id'})({ urlParams: { id: 1 });
+````
+... will send a request to `/api/cars/1`
 
 **[Back to top](#table-of-contents)**
 
