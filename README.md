@@ -70,11 +70,11 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 * [config](#config), config object that is passed to angular's $http function.
 * [options](#options), options used by lightrest to do some custom work on the requests. They are listed below.
   * [urlApiPrepend](#urlapiprepend)
-  * [arrayMode](#arrayMode)
+  * [arrayMode](#arraymode)
 * [data](#data), data sent with the actual request.
   * [query](#query)
   * [body](#body)
-  * [urlParams](#urlParams)
+  * [urlParams](#urlparams)
 
 ### config 
 [`object`]
@@ -99,12 +99,12 @@ When urlApiPrepend is true, it prepends `'/api'` to the url string.
 ````javascript
 lightrest.build({url: '/cars'})
 ````
-By default, the option is true, so this request is sent to `/api/cars`
+By default, the option is `true`, so this request is sent to `/api/cars`
 
 #### arrayMode 
 [`false` `'concurrent'` `'sequential'`] defaults `false`
 
-While arrayMode `false` desactivates this, `'concurrent'` and `'sequential'` does two things:
+While arrayMode `false` deactivates this, `'concurrent'` and `'sequential'` does two things:
 
 1. Instead of an array of `data`, it expects an array of it.
 2. Runs the requests separately for each element in that array.
