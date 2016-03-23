@@ -63,7 +63,7 @@ describe('lightrest', function() {
 
 
     it("should throw error if no Id was supplied", function() {
-      expect(function() { peopleApi.get() })
+      expect(function() { debugger; peopleApi.get() })
       .toThrow(new Error("Url parameter Id was not included in the data"));
       expect(function() { peopleApi.get({Id: ''}) })
       .toThrow(new Error("Url parameter Id was not included in the data"));
@@ -72,7 +72,7 @@ describe('lightrest', function() {
     })
 
     it("should single get correctly", function(done) {
-      peopleApi.get({ urlParams: {Id: 4}})
+      peopleApi.get( {Id: 4} )
       .then(function(res) {
         expect(res.data).toEqual(people[4])
         done();
@@ -84,7 +84,7 @@ describe('lightrest', function() {
       peopleApi.getAll()
       .then(function(res) {
         expect(res.data.length).toEqual(7);
-        return peopleApi.deleteMany([{ urlParams: {Id: 5}}, { urlParams: {Id: 4}}, { urlParams: {Id: 4}}])
+        return peopleApi.deleteMany([{Id: 5}, {Id: 4}, {Id: 4}])
       })
       .then(function(res) {
         return peopleApi.getAll();
@@ -97,12 +97,12 @@ describe('lightrest', function() {
     });
 
     it("should not let you multi delete without Id fields set", function() {
-      expect(function() {peopleApi.deleteMany([{ urlParams: {Id: 5}}, {}, { urlParams: {Id: 3}}])})
+      expect(function() {peopleApi.deleteMany([ { Id: 5 }, {}, { Id: 3 } ])})
       .toThrow(new Error("Url parameter Id was not included in the data"));
     })
 
     it("should not let you multi put without Id fields set", function() {
-      expect(function() {peopleApi.putMany([{ urlParams: {Id: 5}}, {}, {Id: 3}])})
+      expect(function() {peopleApi.putMany([{Id: 5}, {}, {Id: 3}])})
       .toThrow(new Error("Url parameter Id was not included in the data"));
     })
 
@@ -113,14 +113,8 @@ describe('lightrest', function() {
         expect(res.data.length).toEqual(7);
         res.data[3].Name = 'ASDQWE';
         res.data[6].Name = 'rsfdsf';
-        var data = res.data.map(function(person) {
-          return {
-            urlParams: person,
-            body: person
-          }
-        })
         changed = res.data;
-        return peopleApi.putMany(data)
+        return peopleApi.putMany(res.data)
       })
       .then(function(res) {
       	return peopleApi.getAll()

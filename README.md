@@ -71,7 +71,6 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 * [options](#options), options used by lightrest to do some custom work on the requests. They are listed below.
   * [urlApiPrepend](#urlapiprepend)
   * [arrayMode](#arraymode)
-* [data](#data), data sent with the actual request.
   * [query](#query)
   * [body](#body)
   * [urlParams](#urlparams)
@@ -80,17 +79,14 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 [`object`]
 
 This object is sent untouched (with some exceptions) to the $http.
-The exceptions are the `data`, `params`and `url` properties, which are sometimes
-modified depending on the properties set in the `options` and `data`objects.
+The exceptions are the `data`, `params`and `url` properties, which are
+modified depending on the properties set in the `options` object.
 You can read the official documentation of [config properties here](https://docs.angularjs.org/api/ng/service/$http#usage).
 
 ### options 
 [`object`]
 
 This object is used to do some custom stuff on the requests. The properties considered on this object are these:
-
-1. [urlApiPrepend](#urlapiprepend)
-2. [arrayMode](#arraymode)
 
 #### urlApiPrepend 
 [`Boolean`]  defaults `true`
@@ -102,7 +98,7 @@ lightrest.build({url: '/cars'})
 By default, the option is `true`, so this request is sent to `/api/cars`
 
 #### arrayMode 
-[`false` `'concurrent'` `'sequential'`] defaults `false`
+[`undefined`, `'concurrent'`, `'sequential'`] defaults `undefined`
 
 While arrayMode `false` deactivates this, `'concurrent'` and `'sequential'` does two things:
 
@@ -118,43 +114,41 @@ Supposing that the POST method for `/people` creates a person, this sends two re
 The result of a lightrest request on `arrayMode` is the result of angular's `$q.all` with an array of all the `$http` requests done as argument.
 The sequential mode doesn't stop if a request fails.
 
-### data 
-[```object```]
+#### body 
+[`Boolean`, `String`] defaults `false` if request method is `get`, `true` otherwise
 
-This is the object used to send data for the actual request. Three properties are taken from this object to specify how will the data be sent: 
+While `false` deactivates this, `true` means that the entire `data`object is sent as body of the request (using `config.data` parameter).
+````javascript
+var data = { name: 'Mike' };
+var fn = lightrest.build({...}, { body: true});
+fn(data)
+````
+Does a request with body `{ name: 'Mike' }`
 
-1. [query](#query)
-2. [body](#body)
-3. [urlParams](#urlparams)
+Also, if `body` is a `String`, then it will reference `data` properties, it will send the values of those `data` properties as request body.
+````javascript
+var data = { person: { friend: { name: 'Mike' } } };
+var fn = lightrest.build({...}, { body: 'person.friend'});
+fn(data)
+````
+Does a request with body `{ name: 'Mike' }` again. As you might have noticed, you can pick nested properties.
 
+Remember that you will get an exception if you set this as `true` with a get method, since you can't send data in body for get requests.
 
 #### query 
-[```object```]
+[`Boolean`, `string`] defaults `true` if request method is `get`, `false` otherwise
 
-This property is the value used for the `config.query`. It sets the **query string** of the URL.
-````javascript
-var fn = lightrest.build(...);
-fn({ queryString: { name: 'Mike' }})
-````
-
-#### body 
-[```object```]
-
-This property is the value used for the `config.data`. It sets the **body** of the request
-````javascript
-var fn = lightrest.build(...);
-fn({ body: { name: 'Mike' }})
-````
+This option works exactly the same as the `body` option, with the difference of referring to the query string of the request's url instead of the body of the request.
 
 #### urlParams 
-[```object```]
+[`Boolean`] defaults `true`
 
-This object is not actually used to send data, but just the case when any part of the `url` maps to a parameter by using the `:` before words.
+While `false` deactivates this, `true` means that words in the url that have a `:` before them will be replaced with values from `data` using those words as properties.
 
 ````javascript
-lightrest.build({url: '/cars/:id'})({ urlParams: { id: 1 });
+lightrest.build({url: '/cars/:car.id'})({ car: { id: 1 }});
 ````
-... will send a request to `/api/cars/1`
+... will send a request to `/api/cars/1`. You can reference nested properties as shown in the example above.
 
 **[Back to top](#table-of-contents)**
 

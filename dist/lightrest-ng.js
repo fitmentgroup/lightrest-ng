@@ -12,6 +12,12 @@
         function clone(obj) {
             return JSON.parse(JSON.stringify(obj));
         }
+        function getNestedProp(obj, desc) {
+            var arr = desc.split(".");
+            while(arr.length && (obj = obj[arr.shift()]));
+            return obj;
+        }
+
 
         function defaults(config, options) {
             if (options.urlApiPrepend === undefined) options.urlApiPrepend = true;
@@ -22,7 +28,28 @@
             if (options.arrayMode === undefined) ;
             else if (options.arrayMode == 'concurrent') ;
             else if (options.arrayMode == 'sequential') ;
-            else throw new Error('array option should be one of these: concurrent sequential');
+            else throw new Error('arrayMode option should be one of these: undefined \'concurrent\' \'sequential\'');
+
+            if (options.body === undefined) 
+                options.body = (!config.method || config.method.toLowerCase() == 'get') 
+                ? false : true;
+            else if (options.body === false) ;
+            else if (options.body === true) ;
+            else if (typeof options.body === 'string' || options.body instanceof String) ;
+            else throw new Error('body option should be one of these: undefined true false ');
+
+            if (options.query === undefined) 
+                options.query = (!config.method || config.method.toLowerCase() == 'get') 
+                ? true : false;
+            else if (options.query === false) ;
+            else if (options.query === true) ;
+            else if (typeof options.query === 'string' || options.query instanceof String) ;
+            else throw new Error('query option should be one of these: undefined true false ');
+
+            if (options.urlParams === undefined) options.urlParams = true;
+            else if (options.urlParams === true) ;
+            else if (options.urlParams === false) ;
+            else throw new Error('urlParams option can only be one of these: undefined true false')
         }
 
         function build(config, options) {
@@ -40,23 +67,30 @@
             function ajax(data) {
                 if (!data) data = {};
                 var _config = clone(config);
-                var urlParams = data.urlParams;
-                _config.url = _config.url.replace(/:(\w+)/g, function (a, urlParam) {
-                    /* data[urlParam] can be either non empty string or number */
-                    var err = new Error('Url parameter ' + urlParam + ' was not included in the data');
-                    if (!urlParams) throw err;
-                    var val = urlParams[urlParam];
-                    if (val == null) throw err;
-                    val = val.toString();
-                    if (!val) throw err;
-                    return val;
-                });
-                if ((!config.method || config.method.toLowerCase() == 'get' ) 
-                    && data.body !== undefined) {
-                    throw new Error('Can\'t send data in body for get requests');
+                if (options.urlParams) {
+                    _config.url = _config.url.replace(/:([\w.]+)/g, function (a, urlParam) {
+                        /* data[urlParam] can be either non empty string or number */
+                        var err = new Error('Url parameter ' + urlParam + ' was not included in the data');
+                        if (!data) throw err;
+                        var val = getNestedProp(data, urlParam);
+                        if (val == null) throw err;
+                        val = val.toString();
+                        if (!val) throw err;
+                        return val;
+                    });   
                 }
-                _config.data = data.body;
-                _config.query = data.query;
+                if (options.body) {
+                    var _data = (typeof options.body === 'string' || options.body instanceof String) 
+                        ? getNestedProp(data, options.body)
+                        : data
+                    _config.data = _data;
+                }
+                if (options.query) {
+                    var _data = (typeof options.query === 'string' || options.query instanceof String) 
+                        ? getNestedProp(data, options.query)
+                        : data;
+                    _config.query = _data;
+                }
                 return {
                     run: function () { return $http(_config); }
                 }
