@@ -18,7 +18,7 @@ describe('lightrest', function() {
       var url = '/people';
       var idUrl = '/:Id'
       peopleApi = {
-        get: lightrest.build({ url: url + idUrl }),
+        get: lightrest.build({ url: url + idUrl }, { query: false}),
         getAll: lightrest.build({ url: url }),
         post: lightrest.build({ method: 'post', url: url }),
         delete: lightrest.build({ method: 'delete', url: url + idUrl }),
@@ -63,7 +63,7 @@ describe('lightrest', function() {
 
 
     it("should throw error if no Id was supplied", function() {
-      expect(function() { debugger; peopleApi.get() })
+      expect(function() { peopleApi.get() })
       .toThrow(new Error("Url parameter Id was not included in the data"));
       expect(function() { peopleApi.get({Id: ''}) })
       .toThrow(new Error("Url parameter Id was not included in the data"));
@@ -129,8 +129,8 @@ describe('lightrest', function() {
     it("should prepend /api to api.request if it wasn't specified", function() {
     	_lightrest.build({ url: 'people' })()
     	_lightrest.build({ url: '/people' })()
-    	_lightrest.build({ url: '/api/people' })()
-    	_lightrest.build({ url: 'api/people' })()
+    	_lightrest.build({ url: '/api/people' }, { baseUrl: false })()
+    	_lightrest.build({ url: 'api/people' }, { baseUrl: false })()
       httpBackend.flush();
     })
   });

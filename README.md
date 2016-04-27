@@ -69,7 +69,7 @@ The result of `method` is the result of `$http`, and remember that `$http` is a 
 
 * [config](#config), config object that is passed to angular's $http function.
 * [options](#options), options used by lightrest to do some custom work on the requests. They are listed below.
-  * [urlApiPrepend](#urlapiprepend)
+  * [baseUrl](#baseUrl)
   * [arrayMode](#arraymode)
   * [query](#query)
   * [body](#body)
@@ -88,14 +88,16 @@ You can read the official documentation of [config properties here](https://docs
 
 This object is used to do some custom stuff on the requests. The properties considered on this object are these:
 
-#### urlApiPrepend 
+#### baseUrl 
 [`Boolean`]  defaults `true`
 
-When urlApiPrepend is true, it prepends `'/api'` to the url string.
+`baseUrl` is the string that gets prepend to the request.
+When `baseUrl == true`, it prepends `'/api'` to the url string. Nothing is prepend to the url when `baseUrl == false`.
 ````javascript
 lightrest.build({url: '/cars'})
 ````
-By default, the option is `true`, so this request is sent to `/api/cars`
+By default, the option is `true`, so this request is sent to `/api/cars`.
+Note: Shoud make this an overridable global setting.
 
 #### arrayMode 
 [`undefined`, `'concurrent'`, `'sequential'`] defaults `undefined`
